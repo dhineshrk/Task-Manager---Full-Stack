@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mongo DB CRUD </title>
+</head>
+<body>
+    <div class="udambu">
+        <h1 class="head">Mongo DB CRUD</h1>
+        {{message}}
+        <br>
+
+    {{#if edit_id}}
+        <h1>Edit</h1>
+        <form class="frst" method="post" action="/update_book/{{edit_id}}">
+            <label for="">Title</label>
+            <input type="text" name="title" value="{{edit_book.title}}">
+            <label for="">Author</label>
+            <input type="text" name="author" value="{{edit_book.author}}">
+            <input class="submitt" type="submit">
+        </form>
+        <br>
+    {{else}}
+        <h1>Create</h1>
+        <form class="frst" method="post" action="/store_book">
+            <label class="title" for="">TASK</label>
+            <input class="field" type="text" name="title">
+            <label class="title" for="">TIME</label>
+            <input class="field" type="text" name="author">
+            <input class="submitt" type="submit">
+        </form>
+        <br>
+    {{/if}}
+
+
+    
+
+
+    <ul class="unoder">
+        {{#each books}}
+        <li class="list">{{this.title}} - {{this.author}} <a class="link" href="/?edit_id={{this._id}}">Edit</a>  <a class="link" href="/?delete_id={{this._id}}" onclick="return confirm('Are you sure?')">Delete</a></li>
+        {{/each}}
+    </ul>
+    </div>
+</body>
+</html>
+
+<style>
+.head{
+    color: #FEE715;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
+}
+
+.udambu{
+    background-color: #101820;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    color: #FB6542;
+}
+
+.frst{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.title{
+    font-size: 25px;
+    color: #FEE715;
+}
+.field{
+    padding: 10px;
+    border-radius: 10px;
+}
+.submitt{
+    padding: 8px;
+    color: #101820;
+    background-color: #FEE715;
+    border-radius: 10px;
+    font-weight: bolder;
+}
+.link{
+    text-decoration: none;
+    font-weight: 600;
+    color: white;
+
+
+}
+.list{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    color: #FEE715;
+    font-weight: 600;
+}
+.unoder{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+</style>
